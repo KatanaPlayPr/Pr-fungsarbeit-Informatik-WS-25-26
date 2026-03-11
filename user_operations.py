@@ -23,9 +23,7 @@ def login():
     
     return currentUserName
 
-def createUser():
-    currentUserName = login(*getUsersData())
-
+def createUser(currentUserName):
     if currentUserName == "Admin":
         with open("Nutzerdaten.json", "r") as f:
             data = j.load(f)
@@ -42,9 +40,7 @@ def createUser():
     else:
         print("Sie haben keine Berechtigung, Nutzer zu erstellen.", end = "\n\n")
 
-def deleteUser():
-    currentUserName = login(*getUsersData())
-
+def deleteUser(currentUserName):
     if currentUserName == "Admin":
         print("Liste der Benutzer:")
 
@@ -57,7 +53,9 @@ def deleteUser():
 
         while condition:
             userNameToDelete = input("Geben Sie den Benutzernamen ein, den Sie löschen möchten: ")
-            if userNameToDelete in userNames and userNameToDelete != "Admin":
+            if userNameToDelete == "exit":
+                condition = False
+            elif userNameToDelete in userNames and userNameToDelete != "Admin":
                 index = userNames.index(userNameToDelete)
                 userNames.pop(index)
                 passwords.pop(index)
@@ -73,7 +71,3 @@ def deleteUser():
                 print("Benutzername nicht gefunden.", end = "\n\n")
     else:
         print("Sie haben keine Berechtigung, Nutzer zu löschen.", end = "\n\n")
-
-login()
-createUser()
-deleteUser()
