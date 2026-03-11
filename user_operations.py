@@ -28,13 +28,13 @@ def deleteUser(userNames, passwords, currentUserName):
             with open("Nutzerdaten.json", "w") as f:
                 j.dump({"userNames": userNames, "passwords": passwords}, f)
 
-            print(f"Nutzer {userNameToDelete} erfolgreich gelöscht!", end = "\n\n\n\n\n")
+            print(f"Nutzer {userNameToDelete} erfolgreich gelöscht!", end = "\n\n")
         elif userNameToDelete == "Admin":
-            print("Der Admin-Benutzer kann nicht gelöscht werden.", end = "\n\n\n\n\n")
+            print("Der Admin-Benutzer kann nicht gelöscht werden.", end = "\n\n")
         else:
-            print("Benutzername nicht gefunden.", end = "\n\n\n\n\n")
+            print("Benutzername nicht gefunden.", end = "\n\n")
     else:
-        print("Sie haben keine Berechtigung, Nutzer zu löschen.", end = "\n\n\n\n\n")
+        print("Sie haben keine Berechtigung, Nutzer zu löschen.", end = "\n\n")
 
 def getUsersData():
     with open("Nutzerdaten.json", "r") as f:
