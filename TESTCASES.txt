@@ -1,0 +1,8 @@
+12.03.2026, 09:43: testing user management operations. Expected output: list of users, successful creation/deletion/password change messages; loop for creation/deletion
+should allow to try false inputs; loop for creation/deletion should terminate on 'exit'; loop for login should allow re-login after operations; loop for login should
+terminate on 'exit'. Additional test cases: try to create a user with an existing username; try to delete a non-existing user; try to change password with wrong current
+password; try to login with wrong credentials. Actual reults: list of users displayed; successful creation/deletion/password change messages displayed; loop for
+creation/deletion allows to try false inputs and terminates on 'exit'; loop for login allows re-login after operations and terminates on 'exit'; trying to create a user
+with an existing username shows an error message; trying to delete a non-existing user shows an error message; trying to change password with wrong current password
+shows an error message; trying to login with wrong credentials shows an error message;
+if two users have the same password, the user created later cannot log in - this is a bug that needs to be fixed.
