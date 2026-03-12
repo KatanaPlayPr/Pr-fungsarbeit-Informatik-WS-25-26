@@ -19,7 +19,7 @@ def login():
         currentUserName = input("Geben Sie den Benutzername ein: ")
         password = input("Geben Sie das Passwort ein: ")
 
-        if currentUserName in getUsersData()[0] and password in getUsersData()[1] and getUsersData()[0].index(currentUserName) == getUsersData()[1].index(password):
+        if currentUserName in getUsersData()[0] and password in getUsersData()[1]:
             print("Login erfolgreich!", end = "\n\n")
             condition = False
         else:
@@ -27,32 +27,40 @@ def login():
     
     return currentUserName
 
+def giveUserList():
+    userNames, passwords = getUsersData()
+
+    print("Liste der Benutzer:")
+    for userName in userNames:
+        print(userName, end = "\n")
+    print("\n")
+
 def createUser(currentUserName):
     if currentUserName == "Admin":
-        userNames, passwords = getUsersData()
+        condition = True
+        while condition:
+            userNames, passwords = getUsersData()
 
-        newUserName = input("Geben Sie den Benutzernamen für den neuen Nutzer ein: ")
-        if userNames.count(newUserName) == 0:
-            userNames.append(newUserName)
-            passwords.append(input("Geben Sie das Passwort für den neuen Nutzer ein: "))
+            newUserName = input("Geben Sie den Benutzernamen für den neuen Nutzer ein: ")
+            if newUserName == "exit":
+                condition = False
+            elif userNames.count(newUserName) == 0:
+                userNames.append(newUserName)
+                passwords.append(input("Geben Sie das Passwort für den neuen Nutzer ein: "))
             
-            rewriteUsersData(userNames, passwords)
+                rewriteUsersData(userNames, passwords)
 
-            print("Nutzer erfolgreich erstellt!", end = "\n\n")
-        else:
-            print("Benutzer mit solche Benutzername schon existiert. Überprüffen Sie die Liste der Nutzer und versuchen Sie es erneut.")
+                print("Nutzer erfolgreich erstellt!", end = "\n\n")
+            else:
+                print("Benutzer mit solche Benutzername schon existiert. Überprüffen Sie die Liste der Nutzer und versuchen Sie es erneut.")
     else:
         print("Sie haben keine Berechtigung, Nutzer zu erstellen.", end = "\n\n")
 
 def deleteUser(currentUserName):
     if currentUserName == "Admin":
-        print("Liste der Benutzer:")
+        giveUserList()
 
         userNames, passwords = getUsersData()
-
-        for userName in userNames:
-            print(userName)
-
         condition = True
 
         while condition:
@@ -66,7 +74,6 @@ def deleteUser(currentUserName):
 
                 rewriteUsersData(userNames, passwords)
 
-                condition = False
                 print(f"Nutzer {userNameToDelete} erfolgreich gelöscht!", end = "\n\n")
             elif userNameToDelete == "Admin":
                 print("Der Admin-Benutzer kann nicht gelöscht werden.", end = "\n\n")
@@ -76,19 +83,18 @@ def deleteUser(currentUserName):
         print("Sie haben keine Berechtigung, Nutzer zu löschen.", end = "\n\n")
 
 def changePassword(currentUserName):
-    while True:
-        userNames, passwords = getUsersData()
-        index = userNames.index(currentUserName)
-        oldPassword = input("Geben Sie das alte Passwort ein: ")
+    userNames, passwords = getUsersData()
+    index = userNames.index(currentUserName)
+    oldPassword = input("Geben Sie das alte Passwort ein: ")
 
-        newPassword = input("Geben Sie das neue Passwort ein: ")
-        newPassword1 = input("Geben Sie das neue Passwort nochmal ein: ")
+    newPassword = input("Geben Sie das neue Passwort ein: ")
+    newPassword1 = input("Geben Sie das neue Passwort nochmal ein: ")
 
-        if oldPassword == passwords[index] and newPassword == newPassword1:
-            passwords.pop(index)
-            passwords.insert(index, newPassword)
-            rewriteUsersData(userNames, passwords)
+    if oldPassword == passwords[index] and newPassword == newPassword1:
+        passwords.pop(index)
+        passwords.insert(index, newPassword)
+        rewriteUsersData(userNames, passwords)
 
-            print("Passwort erfolgreich geändeert!", end = "\n\n")
-        else:
-            print("Etwas hat nicht geklappt. Überprüffen Sie Ihre Eingaben und versuchen Sie es erneut.", end = "\n\n")
+        print("Passwort erfolgreich geändeert!", end = "\n\n")
+    else:
+        print("Etwas hat nicht geklappt. Überprüffen Sie Ihre Eingaben und versuchen Sie es erneut.", end = "\n\n")
