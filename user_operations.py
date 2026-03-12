@@ -8,6 +8,10 @@ def getUsersData():
     
     return userNames, passwords
 
+def rewriteUsersData(userNames, passwords):
+    with open("Nutzerdaten.json", "w") as f:
+        j.dump({"userNames": userNames, "passwords": passwords}, f)
+
 def login():
     condition = True
 
@@ -25,18 +29,18 @@ def login():
 
 def createUser(currentUserName):
     if currentUserName == "Admin":
-        with open("Nutzerdaten.json", "r") as f:
-            data = j.load(f)
-            userNames = data["userNames"]
-            passwords = data["passwords"]
+        userNames, passwords = getUsersData()
 
-        userNames.append(input("Geben Sie den Benutzernamen für den neuen Nutzer ein: "))
-        passwords.append(input("Geben Sie das Passwort für den neuen Nutzer ein: "))
+        newUserName = input("Geben Sie den Benutzernamen für den neuen Nutzer ein: ")
+        if userNames.count(newUserName) == 0:
+            userNames.append(newUserName)
+            passwords.append(input("Geben Sie das Passwort für den neuen Nutzer ein: "))
+            
+            rewriteUsersData(userNames, passwords)
 
-        with open("Nutzerdaten.json", "w") as f:
-            j.dump({"userNames": userNames, "passwords": passwords}, f)
-
-        print("Nutzer erfolgreich erstellt!", end = "\n\n")
+            print("Nutzer erfolgreich erstellt!", end = "\n\n")
+        else:
+            print("Benutzer mit solche Benutzername schon existiert. Überprüffen Sie die Liste der Nutzer und versuchen Sie es erneut.")
     else:
         print("Sie haben keine Berechtigung, Nutzer zu erstellen.", end = "\n\n")
 
@@ -60,8 +64,7 @@ def deleteUser(currentUserName):
                 userNames.pop(index)
                 passwords.pop(index)
 
-                with open("Nutzerdaten.json", "w") as f:
-                    j.dump({"userNames": userNames, "passwords": passwords}, f)
+                rewriteUsersData(userNames, passwords)
 
                 condition = False
                 print(f"Nutzer {userNameToDelete} erfolgreich gelöscht!", end = "\n\n")
@@ -71,3 +74,21 @@ def deleteUser(currentUserName):
                 print("Benutzername nicht gefunden.", end = "\n\n")
     else:
         print("Sie haben keine Berechtigung, Nutzer zu löschen.", end = "\n\n")
+
+def changePassword(currentUserName):
+    while True:
+        userNames, passwords = getUsersData()
+        index = userNames.index(currentUserName)
+        oldPassword = input("Geben Sie das alte Passwort ein: ")
+
+        newPassword = input("Geben Sie das neue Passwort ein: ")
+        newPassword1 = input("Geben Sie das neue Passwort nochmal ein: ")
+
+        if oldPassword == passwords[index] and newPassword == newPassword1:
+            passwords.pop(index)
+            passwords.insert(index, newPassword)
+            rewriteUsersData(userNames, passwords)
+
+            print("Passwort erfolgreich geändeert!", end = "\n\n")
+        else:
+            print("Etwas hat nicht geklappt. Überprüffen Sie Ihre Eingaben und versuchen Sie es erneut.", end = "\n\n")
