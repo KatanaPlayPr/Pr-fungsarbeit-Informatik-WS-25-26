@@ -20,8 +20,10 @@ def login():
         password = input("Geben Sie das Passwort ein: ")
 
         if currentUserName in getUsersData()[0] and password in getUsersData()[1]:
-            print("Login erfolgreich!", end = "\n\n")
-            condition = False
+            index = getUsersData()[0].index(currentUserName)
+            if password == getUsersData()[1][index]:
+                print("Login erfolgreich!", end = "\n\n")
+                condition = False
         else:
             print("Login fehlgeschlagen. Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort.", end = "\n\n")
     
@@ -98,3 +100,7 @@ def changePassword(currentUserName):
         print("Passwort erfolgreich geändeert!", end = "\n\n")
     else:
         print("Etwas hat nicht geklappt. Überprüffen Sie Ihre Eingaben und versuchen Sie es erneut.", end = "\n\n")
+
+def changeUserName(currentUserName):
+    userNames, passwords = getUsersData()
+    
