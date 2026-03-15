@@ -1,21 +1,21 @@
 import json as j
 
-def giveUserList():
-    userNames = getUsersData()[0]
+def give_user_list():
+    userNames = get_users_data()[0]
     print("\nListe der Benutzer:")
     
     for userName in userNames:
         print(f"    {userName}")
     print("")
 
-def getUsersData():
+def get_users_data():
     with open("Nutzerdaten.json", "r") as f:
         data = j.load(f)
         userNames = data["userNames"]
         passwords = data["passwords"]
     return userNames, passwords
 
-def rewriteUsersData(userNames, passwords):
+def rewrite_users_data(userNames, passwords):
     with open("Nutzerdaten.json", "w") as f:
         j.dump({"userNames": userNames, "passwords": passwords}, f)
 
@@ -26,10 +26,10 @@ def login():
         currentUserName = input("Geben Sie den Benutzername ein: ")
         password = input("Geben Sie das Passwort ein: ")
 
-        if currentUserName in getUsersData()[0] and password in getUsersData()[1]:
-            index = getUsersData()[0].index(currentUserName)
+        if currentUserName in get_users_data()[0] and password in get_users_data()[1]:
+            index = get_users_data()[0].index(currentUserName)
 
-            if password == getUsersData()[1][index]:
+            if password == get_users_data()[1][index]:
                 print("Login erfolgreich!\n")
                 condition = False
 
@@ -40,16 +40,16 @@ def login():
             print("Login fehlgeschlagen. Bitte überprüfen Sie Ihren Benutzernamen und Ihr Passwort.\n")
     return currentUserName
 
-def createUser(currentUserName):
+def create_user(currentUserName):
     if currentUserName == "Admin":
-        userNames, passwords = getUsersData()
+        userNames, passwords = get_users_data()
         newUserName = input("\nGeben Sie den Benutzernamen für den neuen Nutzer ein: ")
 
         if userNames.count(newUserName) == 0:
             userNames.append(newUserName)
             passwords.append(input("Geben Sie das Passwort für den neuen Nutzer ein: "))
 
-            rewriteUsersData(userNames, passwords)
+            rewrite_users_data(userNames, passwords)
             print("Nutzer erfolgreich erstellt!\n")
 
         else:
@@ -58,10 +58,10 @@ def createUser(currentUserName):
     else:
         print("\nSie haben keine Berechtigung, Nutzer zu erstellen.\n")
 
-def deleteUser(currentUserName):
+def delete_user(currentUserName):
     if currentUserName == "Admin":
-        giveUserList()
-        userNames, passwords = getUsersData()
+        give_user_list()
+        userNames, passwords = get_users_data()
         userNameToDelete = input("Geben Sie den Benutzernamen ein, den Sie löschen möchten: ")
 
         if userNameToDelete in userNames and userNameToDelete != "Admin":
@@ -69,7 +69,7 @@ def deleteUser(currentUserName):
             userNames.pop(index)
             passwords.pop(index)
 
-            rewriteUsersData(userNames, passwords)
+            rewrite_users_data(userNames, passwords)
             print(f"Nutzer {userNameToDelete} erfolgreich gelöscht!\n")
 
         elif userNameToDelete == "Admin":
@@ -81,8 +81,8 @@ def deleteUser(currentUserName):
     else:
         print("\nSie haben keine Berechtigung, Nutzer zu löschen.\n")
 
-def changePassword(currentUserName):
-    userNames, passwords = getUsersData()
+def change_password(currentUserName):
+    userNames, passwords = get_users_data()
     index = userNames.index(currentUserName)
 
     oldPassword = input("\nGeben Sie das alte Passwort ein: ")
@@ -93,17 +93,17 @@ def changePassword(currentUserName):
         passwords.pop(index)
         passwords.insert(index, newPassword)
 
-        rewriteUsersData(userNames, passwords)
+        rewrite_users_data(userNames, passwords)
         print("\nPasswort erfolgreich geändert!\n")
 
     else:
         print("\nEtwas hat nicht geklappt. Überprüffen Sie Ihre Eingaben und versuchen Sie es erneut.\n")
 
-def changeUserName(currentUserName):
-    userNames, passwords = getUsersData()
+def change_user_name(currentUserName):
+    userNames, passwords = get_users_data()
 
     if currentUserName == "Admin":
-        giveUserList()
+        give_user_list()
         userNameToChange = input("Geben Sie den Benutzernamen ein, den Sie ändern möchten: ")
 
         if userNameToChange in userNames and userNameToChange != "Admin":
@@ -114,7 +114,7 @@ def changeUserName(currentUserName):
                 userNames.pop(index)
                 userNames.insert(index, newUserName)
 
-                rewriteUsersData(userNames, passwords)
+                rewrite_users_data(userNames, passwords)
                 print(f"Benutzername {userNameToChange} erfolgreich zu {newUserName} geändert!\n")
 
             else:
@@ -138,19 +138,19 @@ def userOperationsMenu(currentUserName):
 
         try:
             if choice == "1":
-                createUser(currentUserName)
+                create_user(currentUserName)
 
             elif choice == "2":
-                deleteUser(currentUserName)
+                delete_user(currentUserName)
 
             elif choice == "3":
-                changePassword(currentUserName)
+                change_password(currentUserName)
 
             elif choice == "4":
-                changeUserName(currentUserName)
+                change_user_name(currentUserName)
 
             elif choice == "5":
-                giveUserList()
+                give_user_list()
 
             elif choice == "6":
                 print("Logout erfolgreich!\n")
