@@ -83,15 +83,13 @@ def delete_user(currentUserName):
 
 def change_password(currentUserName):
     userNames, passwords = get_users_data()
-    index = userNames.index(currentUserName)
 
     oldPassword = input("\nGeben Sie das alte Passwort ein: ")
     newPassword = input("Geben Sie das neue Passwort ein: ")
     newPassword1 = input("Geben Sie das neue Passwort nochmal ein: ")
 
-    if oldPassword == passwords[index] and newPassword == newPassword1:
-        passwords.pop(index)
-        passwords.insert(index, newPassword)
+    if oldPassword == passwords[userNames.index(currentUserName)] and newPassword == newPassword1:
+        passwords[userNames.index(currentUserName)] = newPassword
 
         rewrite_users_data(userNames, passwords)
         print("\nPasswort erfolgreich geändert!\n")
