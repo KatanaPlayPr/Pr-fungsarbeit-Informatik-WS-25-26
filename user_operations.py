@@ -138,15 +138,19 @@ def userOperationsMenu(currentUserName):
 
         try:
             if choice == "1":
+                print("\nBenutzer erstellen:")
                 create_user(currentUserName)
 
             elif choice == "2":
+                print("\nBenutzer löschen:")
                 delete_user(currentUserName)
 
             elif choice == "3":
+                print("\nPasswort ändern:")
                 change_password(currentUserName)
 
             elif choice == "4":
+                print("\nBenutzernamen ändern:")
                 change_user_name(currentUserName)
 
             elif choice == "5":
