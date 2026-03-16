@@ -7,3 +7,7 @@ with an existing username shows an error message; trying to delete a non-existin
 shows an error message; trying to login with wrong credentials shows an error message. Bug found: if two users have the same password, the user created later cannot log
 in. Bug fixed by checking the index of the username and comparing the password at that index.
 
+16.03.2026, 12:09: testing user management operations menu. Expected output: login and password requested, loop allows to try false inputs and terminates on 'exit',
+successful login message, menu options displayed, successful operation messages. Actual results: login and password requested; loop allows to try false inputs and
+terminates on 'exit'; successful login message displayed; menu options displayed; successful operation messages displayed.
+
