@@ -21,3 +21,6 @@ def main_menu():
                     print("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 0 und 2 ein.\n")
             except Exception as e:
                 print(f"Ein Fehler ist aufgetreten: {e}. Bitte versuchen Sie es erneut oder wenden Sie sich an einen Administrator.\n")
+
+
+main_menu()
