@@ -23,4 +23,9 @@ terminates on 'exit'; successful login message displayed; menu options displayed
 18.03.2026, 13:10: testing main menu.     Expected output: login and password requested, loop allows to try false inputs and terminates on 'exit', successful login message,
 menu options displayed. The main menu should allow to access the user management and student management menus, and should allow to log out. The user management menu and
 the student management menu changed so they should not ask for login again when accessed from the main menu, also blocking the possibility to log out from the user management
-menu and the student management menu, allowing to go back to the main menu instead.    Actual results: awaiting.
+menu and the student management menu, allowing to go back to the main menu instead.    Actual results: login and password requested; loop allows to try false inputs and
+terminates on 'exit'; successful login message displayed; menu options displayed; main menu allows to access the user management and student management menus, and allows to
+log out; user management menu and student management menu do not ask for login again when accessed from the main menu, and do not allow to log out from their menus, allowing
+to go back to the main menu instead. Overall, the main menu and its submenus work as expected.
+
+To-do: implement all of the functionality into main. Overall state 18.03.2026, 13:50: ready for submission.

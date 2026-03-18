@@ -25,7 +25,7 @@ def login():
     while condition:
         currentUserName = input("Geben Sie den Benutzername ein (exit zum Beenden): ")
 
-        if currentUserName == "exit":
+        if currentUserName == str.lower("exit"):
             condition = False
 
         elif currentUserName not in get_users_data()[0]:
@@ -52,7 +52,7 @@ def create_user(currentUserName):
         while condition:
             newUserName = input("\nGeben Sie den Benutzernamen für den neuen Nutzer ein (exit zum Beenden): ")
 
-            if newUserName == "exit":
+            if newUserName == str.lower("exit"):
                 condition = False
 
             elif userNames.count(newUserName) == 0:
@@ -80,7 +80,7 @@ def delete_user(currentUserName):
         while condition:
             userNameToDelete = input("Geben Sie den Benutzernamen ein, den Sie löschen möchten (exit zum Beenden): ")
 
-            if userNameToDelete == "exit":
+            if userNameToDelete == str.lower("exit"):
                 condition = False
 
             elif userNameToDelete in userNames and userNameToDelete != "Admin":
@@ -109,7 +109,7 @@ def change_password(currentUserName):
     while condition:
         oldPassword = input("\nGeben Sie das alte Passwort ein (exit zum Beenden): ")
 
-        if oldPassword == "exit":
+        if oldPassword == str.lower("exit"):
             condition = False
 
         else:
@@ -137,7 +137,7 @@ def change_user_name(currentUserName):
         while condition:
             userNameToChange = input("Geben Sie den Benutzernamen ein, den Sie ändern möchten (exit zum Beenden): ")
 
-            if userNameToChange == "exit":
+            if userNameToChange == str.lower("exit"):
                 condition = False
 
             elif userNameToChange in userNames and userNameToChange != "Admin":
@@ -169,7 +169,7 @@ def user_operations_menu(currentUserName):
     condition = True
 
     while condition:
-        choice = input("Willkommen zum Benutzerverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Neuer Benutzer hinterlegen\n2: Benutzer löschen\n3: Ihre Passwort ändern\n4: Benutzernamen ändern\n5: Benutzerliste ausgeben\n0: Zum Hauptmenü\nGeben Sie die Nummer der gewünschten Operation ein: ")
+        choice = input("\nWillkommen zum Benutzerverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Neuer Benutzer hinterlegen\n2: Benutzer löschen\n3: Ihre Passwort ändern\n4: Benutzernamen ändern\n5: Benutzerliste ausgeben\n0: Zum Hauptmenü\nGeben Sie die Nummer der gewünschten Operation ein: ")
 
         try:
             if choice == "1":

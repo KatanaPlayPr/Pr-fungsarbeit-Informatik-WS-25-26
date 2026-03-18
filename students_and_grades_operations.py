@@ -8,6 +8,14 @@ def give_student_list_sorted_alphabetically():
         print(f"    {student}, Note: {grades[students.index(student)]:.2f}")
     print("")
 
+def give_student_list_sorted_alphabetically_with_id():
+    id, students = get_students_data()[0], get_students_data()[1]
+    print("\nListe der Studenten (alphabetisch sortiert):")
+
+    for student in sorted(students, key = str.lower):
+        print(f"    {student}, Matrikelnummer: {id[students.index(student)]:.2f}")
+    print("")
+
 def give_student_list_sorted_by_id():
     id, students, grades = get_students_data()
     print("\nListe der Studenten (nach Matrikelnummer sortiert):")
@@ -37,14 +45,14 @@ def rewrite_students_data(id, students, grades):
         j.dump({"id": id, "students": students, "grades": grades}, f)
 
 def add_student(currentUserName):
-    if currentUserName == "Lehrer":
+    if currentUserName == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
             newStudentId = input("\nBitte geben Sie die Matrikelnummer des neuen Studenten ein (exit zum Beenden): ")
 
-            if newStudentId == "exit":
+            if newStudentId == str.lower("exit"):
                 condition = False
 
             else:
@@ -73,14 +81,16 @@ def add_student(currentUserName):
         print("\nSie haben keine Berechtigung, einen neuen Studenten hinzuzufügen. Bitte wenden Sie sich an den Lehrer.\n")
 
 def remove_student(currentUserName):
-    if currentUserName == "Lehrer":
+    if currentUserName == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
+            give_student_list_sorted_alphabetically_with_id()
+
             studentIdToRemove = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, den Sie entfernen möchten (exit zum Beenden): ")
 
-            if studentIdToRemove == "exit":
+            if studentIdToRemove == str.lower("exit"):
                 condition = False
 
             else:
@@ -109,14 +119,16 @@ def remove_student(currentUserName):
         print("\nSie haben keine Berechtigung, einen Studenten zu entfernen. Bitte wenden Sie sich an den Lehrer.\n")
 
 def change_student_name(currentUserName):
-    if currentUserName == "Lehrer":
+    if currentUserName == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
+            give_student_list_sorted_alphabetically_with_id()
+
             studentIdToChange = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Namen Sie ändern möchten (exit zum Beenden): ")
 
-            if studentIdToChange == "exit":
+            if studentIdToChange == str.lower("exit"):
                 condition = False
 
             else:
@@ -143,14 +155,16 @@ def change_student_name(currentUserName):
         print("\nSie haben keine Berechtigung, den Namen eines Studenten zu ändern. Bitte wenden Sie sich an den Lehrer.\n")
 
 def change_student_id(currentUserName):
-    if currentUserName == "Lehrer":
+    if currentUserName == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
+            give_student_list_sorted_alphabetically_with_id()
+
             studentIdToChange = input("\nBitte geben Sie die aktuelle Matrikelnummer des Studenten ein, dessen Matrikelnummer Sie ändern möchten (exit zum Beenden): ")
 
-            if studentIdToChange == "exit":
+            if studentIdToChange == str.lower("exit"):
                 condition = False
 
             else:
@@ -187,14 +201,16 @@ def change_student_id(currentUserName):
         print("\nSie haben keine Berechtigung, die Matrikelnummer eines Studenten zu ändern. Bitte wenden Sie sich an den Lehrer.\n")
 
 def change_student_grade(currentUserName):
-    if currentUserName == "Lehrer":
+    if currentUserName == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
+            give_student_list_sorted_alphabetically_with_id()
+
             studentIdToChange = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Note Sie ändern möchten (exit zum Beenden): ")
 
-            if studentIdToChange == "exit":
+            if studentIdToChange == str.lower("exit"):
                 condition = False
 
             else:
@@ -245,14 +261,16 @@ def give_group_size():
     print(f"\nDie Anzahl der Studenten in der Gruppe beträgt: {len(students)}\n")
 
 def void_grade(currentUserName):
-    if currentUserName == "Lehrer":
+    if currentUserName == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
+            give_student_list_sorted_alphabetically_with_id()
+
             studentIdToVoid = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Note Sie annullieren möchten (exit zum Beenden): ")
 
-            if studentIdToVoid == "exit":
+            if studentIdToVoid == str.lower("exit"):
                 condition = False
 
             else:
@@ -282,9 +300,11 @@ def get_students_note():
     condition = True
 
     while condition:
+        give_student_list_sorted_alphabetically_with_id()
+
         studentIdToCheck = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Note Sie überprüfen möchten (exit zum Beenden): ")
 
-        if studentIdToCheck == "exit":
+        if studentIdToCheck == str.lower("exit"):
             condition = False
 
         else:
@@ -306,7 +326,7 @@ def students_operations_menu(currentUserName):
     condition = True
 
     while condition:
-        choice = input("Willkommen zum Studentenverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Student hinzufügen\n2: Student entfernen\n3: Namen eines Studenten ändern\n4: Matrikelnummer eines Studenten ändern\n5: Note eines Studenten ändern\n6: Note eines Studenten annullieren\n7: Note eines Studenten überprüfen\n8: Durchschnittsnote der Gruppe berechnen\n9: Anzahl der Studenten in der Gruppe anzeigen\n10: Liste der Studenten anzeigen\n0: Zum Hauptmenü\nGeben Sie die Nummer der gewünschten Operation ein: ")
+        choice = input("\nWillkommen zum Studentenverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Student hinzufügen\n2: Student entfernen\n3: Namen eines Studenten ändern\n4: Matrikelnummer eines Studenten ändern\n5: Note eines Studenten ändern\n6: Note eines Studenten annullieren\n7: Note eines Studenten überprüfen\n8: Durchschnittsnote der Gruppe berechnen\n9: Anzahl der Studenten in der Gruppe anzeigen\n10: Liste der Studenten anzeigen\n0: Zum Hauptmenü\nGeben Sie die Nummer der gewünschten Operation ein: ")
 
         try:
             if choice == "1":
