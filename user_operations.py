@@ -164,41 +164,36 @@ def change_user_name(currentUserName):
         print("\nSie haben keine Berechtigung, Benutzernamen zu ändern.\n")
 
 def user_operations_menu(currentUserName):
-    if currentUserName == "exit":
-        print("Programm wird beendet. Auf Wiedersehen!")
+    condition = True
 
-    else:
-        condition = True
+    while condition:
+        choice = input("Willkommen zum Benutzerverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Neuer Benutzer hinterlegen\n2: Benutzer löschen\n3: Ihre Passwort ändern\n4: Benutzernamen ändern\n5: Benutzerliste ausgeben\n0: Zum Hauptmenü\nGeben Sie die Nummer der gewünschten Operation ein: ")
 
-        while condition:
-            choice = input("Willkommen zum Benutzerverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Neuer Benutzer hinterlegen\n2: Benutzer löschen\n3: Ihre Passwort ändern\n4: Benutzernamen ändern\n5: Benutzerliste ausgeben\n6: Logout\nGeben Sie die Nummer der gewünschten Operation ein: ")
+        try:
+            if choice == "1":
+                print("\nBenutzer erstellen:")
+                create_user(currentUserName)
 
-            try:
-                if choice == "1":
-                    print("\nBenutzer erstellen:")
-                    create_user(currentUserName)
+            elif choice == "2":
+                print("\nBenutzer löschen:")
+                delete_user(currentUserName)
 
-                elif choice == "2":
-                    print("\nBenutzer löschen:")
-                    delete_user(currentUserName)
+            elif choice == "3":
+                print("\nPasswort ändern:")
+                change_password(currentUserName)
 
-                elif choice == "3":
-                    print("\nPasswort ändern:")
-                    change_password(currentUserName)
+            elif choice == "4":
+                print("\nBenutzernamen ändern:")
+                change_user_name(currentUserName)
 
-                elif choice == "4":
-                    print("\nBenutzernamen ändern:")
-                    change_user_name(currentUserName)
+            elif choice == "5":
+                give_user_list()
 
-                elif choice == "5":
-                    give_user_list()
+            elif choice == "0":
+                condition = False
 
-                elif choice == "6":
-                    print("Logout erfolgreich!\n")
-                    condition = False
+            else:
+                print("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 0 und 5 ein.\n")
 
-                else:
-                    print("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 6 ein.\n")
-
-            except Exception as e:
-                print(f"Ein Fehler ist aufgetreten: {e}. Bitte versuchen Sie es erneut oder wenden Sie sich an einen Administrator.\n")
+        except Exception as e:
+            print(f"Ein Fehler ist aufgetreten: {e}. Bitte versuchen Sie es erneut oder wenden Sie sich an einen Administrator.\n")
