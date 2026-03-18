@@ -29,3 +29,8 @@ log out; user management menu and student management menu do not ask for login a
 to go back to the main menu instead. Overall, the main menu and its submenus work as expected.
 
 To-do: implement all of the functionality into main. Overall state 18.03.2026, 13:50: ready for submission.
+Done.
+
+18.03.2026, 16:35: testing the main file.   Expected output: equivalent to the main_menu function of the menu_operations.py.    Actual results: programm runs as intended.
+
+State: 18.03.2026, 16:40: programm lacks descriptions and documentations, othervise ready for submission.
