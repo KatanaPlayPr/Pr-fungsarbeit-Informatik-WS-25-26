@@ -28,13 +28,15 @@ def login():
         if currentUserName == "exit":
             condition = False
 
+        elif currentUserName not in get_users_data()[0]:
+            print("Benutzer mit diesem Namen existiert nicht.\n")
+
         else:
             password = input("Geben Sie das Passwort ein: ")
 
-            if currentUserName in get_users_data()[0] and password in get_users_data()[1]:
-                index = get_users_data()[0].index(currentUserName)
+            if password in get_users_data()[1]:
 
-                if password == get_users_data()[1][index]:
+                if password == get_users_data()[1][get_users_data()[0].index(currentUserName)]:
                     print("Login erfolgreich!\n")
                 condition = False
 
