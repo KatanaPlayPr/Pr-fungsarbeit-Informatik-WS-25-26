@@ -1,5 +1,4 @@
 import json as j
-from user_operations import login
 
 def give_student_list_sorted_alphabetically():
     students, grades = get_students_data()[1], get_students_data()[2]
@@ -304,79 +303,74 @@ def get_students_note():
                 print("\nEs existiert kein Student mit dieser Matrikelnummer. Bitte versuchen Sie es erneut.\n")
 
 def students_operations_menu(currentUserName):
-    if currentUserName == "exit":
-        print("Programm wird beendet. Auf Wiedersehen!")
+    condition = True
 
-    else:
-        condition = True
+    while condition:
+        choice = input("Willkommen zum Studentenverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Student hinzufügen\n2: Student entfernen\n3: Namen eines Studenten ändern\n4: Matrikelnummer eines Studenten ändern\n5: Note eines Studenten ändern\n6: Note eines Studenten annullieren\n7: Note eines Studenten überprüfen\n8: Durchschnittsnote der Gruppe berechnen\n9: Anzahl der Studenten in der Gruppe anzeigen\n10: Liste der Studenten anzeigen\n0: Zum Hauptmenü\nGeben Sie die Nummer der gewünschten Operation ein: ")
 
-        while condition:
-            choice = input("Willkommen zum Studentenverwaltungsmenü!\nHier können Sie folgende Operationen durchführen:\n1: Student hinzufügen\n2: Student entfernen\n3: Namen eines Studenten ändern\n4: Matrikelnummer eines Studenten ändern\n5: Note eines Studenten ändern\n6: Note eines Studenten annullieren\n7: Note eines Studenten überprüfen\n8: Durchschnittsnote der Gruppe berechnen\n9: Anzahl der Studenten in der Gruppe anzeigen\n10: Liste der Studenten anzeigen\n11: Logout\nGeben Sie die Nummer der gewünschten Operation ein: ")
+        try:
+            if choice == "1":
+                print("\nStudent hinzufügen:")
+                add_student(currentUserName)
 
-            try:
-                if choice == "1":
-                    print("\nStudent hinzufügen:")
-                    add_student(currentUserName)
+            elif choice == "2":
+                print("\nStudent entfernen:")
+                remove_student(currentUserName)
 
-                elif choice == "2":
-                    print("\nStudent entfernen:")
-                    remove_student(currentUserName)
+            elif choice == "3":
+                print("\nNamen eines Studenten ändern:")
+                change_student_name(currentUserName)
 
-                elif choice == "3":
-                    print("\nNamen eines Studenten ändern:")
-                    change_student_name(currentUserName)
+            elif choice == "4":
+                print("\nMatrikelnummer eines Studenten ändern:")
+                change_student_id(currentUserName)
 
-                elif choice == "4":
-                    print("\nMatrikelnummer eines Studenten ändern:")
-                    change_student_id(currentUserName)
+            elif choice == "5":
+                print("\nNote eines Studenten ändern:")
+                change_student_grade(currentUserName)
 
-                elif choice == "5":
-                    print("\nNote eines Studenten ändern:")
-                    change_student_grade(currentUserName)
+            elif choice == "6":
+                print("\nNote eines Studenten annullieren:")
+                void_grade(currentUserName)
 
-                elif choice == "6":
-                    print("\nNote eines Studenten annullieren:")
-                    void_grade(currentUserName)
+            elif choice == "7":
+                print("\nNote eines Studenten überprüfen:")
+                get_students_note()
 
-                elif choice == "7":
-                    print("\nNote eines Studenten überprüfen:")
-                    get_students_note()
+            elif choice == "8":
+                print("\nDurchschnittsnote der Gruppe berechnen:")
+                give_group_average_grade()
 
-                elif choice == "8":
-                    print("\nDurchschnittsnote der Gruppe berechnen:")
-                    give_group_average_grade()
+            elif choice == "9":
+                print("\nAnzahl der Studenten in der Gruppe anzeigen:")
+                give_group_size()
 
-                elif choice == "9":
-                    print("\nAnzahl der Studenten in der Gruppe anzeigen:")
-                    give_group_size()
+            elif choice == "10":
+                cond = True
 
-                elif choice == "10":
-                    cond = True
+                while cond:
+                    choice_list = input("\nMöchten Sie die Liste der Studenten alphabetisch sortiert (1), nach Matrikelnummer sortiert (2) oder nach Noten sortiert (3) anzeigen? Geben Sie die entsprechende Zahl ein: ")
 
-                    while cond:
-                        choice_list = input("\nMöchten Sie die Liste der Studenten alphabetisch sortiert (1), nach Matrikelnummer sortiert (2) oder nach Noten sortiert (3) anzeigen? Geben Sie die entsprechende Zahl ein: ")
+                    if choice_list == "1":
+                        give_student_list_sorted_alphabetically()
+                        cond = False
 
-                        if choice_list == "1":
-                            give_student_list_sorted_alphabetically()
-                            cond = False
+                    elif choice_list == "2":
+                        give_student_list_sorted_by_id()
+                        cond = False
 
-                        elif choice_list == "2":
-                            give_student_list_sorted_by_id()
-                            cond = False
+                    elif choice_list == "3":
+                        give_student_list_sorted_by_grades()
+                        cond = False
 
-                        elif choice_list == "3":
-                            give_student_list_sorted_by_grades()
-                            cond = False
+                    else:
+                        print("\nUngültige Eingabe. Bitte geben Sie 1, 2 oder 3 ein.\n")
 
-                        else:
-                            print("\nUngültige Eingabe. Bitte geben Sie 1, 2 oder 3 ein.\n")
+            elif choice == "0":
+                condition = False
 
-                elif choice == "11":
-                    print("Logout erfolgreich!\n")
-                    condition = False
+            else:
+                print("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 0 und 10 ein.\n")
 
-                else:
-                    print("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 11 ein.\n")
-
-            except Exception as e:
-                print(f"Ein Fehler ist aufgetreten: {e}. Bitte versuchen Sie es erneut oder wenden Sie sich an einen Administrator.\n")
+        except Exception as e:
+            print(f"Ein Fehler ist aufgetreten: {e}. Bitte versuchen Sie es erneut oder wenden Sie sich an einen Administrator.\n")
