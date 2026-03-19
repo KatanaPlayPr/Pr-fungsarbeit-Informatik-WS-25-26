@@ -15,7 +15,7 @@ def get_users_data():   #function for internal use only; used for getting user d
         passwords = data["passwords"]   #saves array of passwords
     return userNames, passwords     #function returns arguments, which are arrays. Function added to reduce redundancies in code (same is true for the next function, see 18-20)
 
-def rewrite_users_data(userNames, passwords):   #for the function is true the information given above
+def rewrite_users_data(userNames, passwords):   #for the function is true the information given above; is used for rewriting user data into the JSON file
     with open("Nutzerdaten.json", "w") as f:
         j.dump({"userNames": userNames, "passwords": passwords}, f) #saves arrays, that function gets as arguments, in the JSON file mentioned before
 
