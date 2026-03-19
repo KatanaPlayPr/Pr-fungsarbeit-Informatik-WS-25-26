@@ -25,7 +25,7 @@ def login():            #function for logging in; returns the username of the us
     while condition:    #while-loop, that is true until the user logs in successfully or types "exit" to end the login process; used to give the user multiple tries to log in and to avoid errors in case of wrong input (as here, while-loops are used in many other functions for the same purpose throughout few files, so they will not be explained again)
         currentUserName = input("Geben Sie den Benutzername ein (exit zum Beenden): ")  #saves the username, that the user types in, in a variable to be returned by the function (see 45) and used for permission checks (see comment line 22)
 
-        if currentUserName == str.lower("exit"):    #case-insensitive cancel-sequence, in case is needed to end the login process
+        if str.lower(currentUserName) == str.lower("exit"):    #case-insensitive cancel-sequence, in case is needed to end the login process
             condition = False                       #sets "condition" (explanation see line 23) to false, breaking the loop
 
         elif currentUserName not in get_users_data()[0]:    #checks if user with give username exists
@@ -52,7 +52,7 @@ def create_user(currentUserName):   #function for creating new users
         while condition:    #see 25
             newUserName = input("\nGeben Sie den Benutzernamen für den neuen Nutzer ein (exit zum Beenden): ")  #asks for the username of the new user
 
-            if newUserName == str.lower("exit"):    #case-insensitive cancel-sequence
+            if str.lower(newUserName) == str.lower("exit"):    #case-insensitive cancel-sequence
                 condition = False
 
             elif userNames.count(newUserName) == 0: #the condition only allows to add user with the username that is not currently used
@@ -80,7 +80,7 @@ def delete_user(currentUserName):   #function for deleting users
         while condition:    #see 25
             userNameToDelete = input("Geben Sie den Benutzernamen ein, den Sie löschen möchten (exit zum Beenden): ")   #asks for the username of the user to delete
 
-            if userNameToDelete == str.lower("exit"):   #see 55
+            if str.lower(userNameToDelete) == str.lower("exit"):   #see 55
                 condition = False
 
             elif userNameToDelete == "Admin":   #prohibits deleting Admin user for security reasons
@@ -108,7 +108,7 @@ def change_password(currentUserName):   #function for changing the password of t
     while condition:    #see 25
         oldPassword = input("\nGeben Sie das alte Passwort ein (exit zum Beenden): ")   #asks for the old password
 
-        if oldPassword == str.lower("exit"):    #see 55
+        if str.lower(oldPassword) == str.lower("exit"):    #see 55
             condition = False
 
         else:
@@ -136,7 +136,7 @@ def change_user_name(currentUserName):  #function for changing the username of a
         while condition:    #see 25
             userNameToChange = input("Geben Sie den Benutzernamen ein, den Sie ändern möchten (exit zum Beenden): ")    #asks for the username of the user, whose username is going to be changed
 
-            if userNameToChange == str.lower("exit"):   #see 55
+            if str.lower(userNameToChange) == str.lower("exit"):   #see 55
                 condition = False
 
             elif userNameToChange == "Admin":   #see 86

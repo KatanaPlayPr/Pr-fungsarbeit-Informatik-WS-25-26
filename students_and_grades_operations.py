@@ -45,14 +45,14 @@ def rewrite_students_data(id, students, grades):    #function for internal use o
         j.dump({"id": id, "students": students, "grades": grades}, f)
 
 def add_student(currentUserName):   #function used for adding a new student to the list
-    if currentUserName == str.lower("Lehrer"):  #allows access to the function only to the teacher; the case-insensitivity implies the possibility to add multiple teacher user with different upper-case/lower-case combination
+    if str.lower(currentUserName) == str.lower("Lehrer"):  #allows access to the function only to the teacher; the case-insensitivity implies the possibility to add multiple teacher user with different upper-case/lower-case combination
         id, students, grades = get_students_data()
         condition = True
 
         while condition:
             newStudentId = input("\nBitte geben Sie die Matrikelnummer des neuen Studenten ein (exit zum Beenden): ")   #asks for the id of a new student
 
-            if newStudentId == str.lower("exit"):   #case-insensitive cancel-sequence
+            if newStudentId == str.casefold("exit"):   #case-insensitive cancel-sequence
                 condition = False
 
             else:
@@ -81,7 +81,7 @@ def add_student(currentUserName):   #function used for adding a new student to t
         print("\nSie haben keine Berechtigung, einen neuen Studenten hinzuzufügen. Bitte wenden Sie sich an den Lehrer.\n") #error message in case of unauthorised user
 
 def remove_student(currentUserName):    #function used for deleting a student from the list
-    if currentUserName == str.lower("Lehrer"):  #see add_student
+    if str.lower(currentUserName) == str.lower("Lehrer"):  #see add_student
         id, students, grades = get_students_data()
         condition = True
 
@@ -90,7 +90,7 @@ def remove_student(currentUserName):    #function used for deleting a student fr
 
             studentIdToRemove = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, den Sie entfernen möchten (exit zum Beenden): ") #asks for id of student wich should be deleted
 
-            if studentIdToRemove == str.lower("exit"):  #case-insensitive cancel-sequence
+            if str.lower(studentIdToRemove) == str.lower("exit"):  #case-insensitive cancel-sequence
                 condition = False
 
             else:
@@ -119,7 +119,7 @@ def remove_student(currentUserName):    #function used for deleting a student fr
         print("\nSie haben keine Berechtigung, einen Studenten zu entfernen. Bitte wenden Sie sich an den Lehrer.\n")   #error message in case of an unauthorised user
 
 def change_student_name(currentUserName):   #function used for changing student's name
-    if currentUserName == str.lower("Lehrer"):  #see add_student
+    if str.lower(currentUserName) == str.lower("Lehrer"):  #see add_student
         id, students, grades = get_students_data()
         condition = True
 
@@ -128,7 +128,7 @@ def change_student_name(currentUserName):   #function used for changing student'
 
             studentIdToChange = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Namen Sie ändern möchten (exit zum Beenden): ")   #asks for an id number of the studen, who's name should be changed
 
-            if studentIdToChange == str.lower("exit"):  #case-insensitive cancel-sequense
+            if str.lower(studentIdToChange) == str.lower("exit"):  #case-insensitive cancel-sequense
                 condition = False
 
             else:
@@ -155,7 +155,7 @@ def change_student_name(currentUserName):   #function used for changing student'
         print("\nSie haben keine Berechtigung, den Namen eines Studenten zu ändern. Bitte wenden Sie sich an den Lehrer.\n")    #error message in case of unauthorised user
 
 def change_student_id(currentUserName):     #function used for changing student's id number; has same functionality as previous function, will not be explained further
-    if currentUserName == str.lower("Lehrer"):
+    if str.lower(currentUserName) == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
@@ -164,7 +164,7 @@ def change_student_id(currentUserName):     #function used for changing student'
 
             studentIdToChange = input("\nBitte geben Sie die aktuelle Matrikelnummer des Studenten ein, dessen Matrikelnummer Sie ändern möchten (exit zum Beenden): ")
 
-            if studentIdToChange == str.lower("exit"):
+            if str.lower(studentIdToChange) == str.lower("exit"):
                 condition = False
 
             else:
@@ -201,7 +201,7 @@ def change_student_id(currentUserName):     #function used for changing student'
         print("\nSie haben keine Berechtigung, die Matrikelnummer eines Studenten zu ändern. Bitte wenden Sie sich an den Lehrer.\n")
 
 def change_student_grade(currentUserName):  #function used for changing student's grade; has same functionality as previous function, will not be explained further
-    if currentUserName == str.lower("Lehrer"):
+    if str.lower(currentUserName) == str.lower("Lehrer"):
         id, students, grades = get_students_data()
         condition = True
 
@@ -210,7 +210,7 @@ def change_student_grade(currentUserName):  #function used for changing student'
 
             studentIdToChange = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Note Sie ändern möchten (exit zum Beenden): ")
 
-            if studentIdToChange == str.lower("exit"):
+            if str.lower(studentIdToChange) == str.lower("exit"):
                 condition = False
 
             else:
@@ -260,7 +260,7 @@ def give_group_size():  #function used for getting the number of students in the
     print(f"\nDie Anzahl der Studenten in der Gruppe beträgt: {len(students)}\n")   #gives user the number of students
 
 def void_grade(currentUserName):    #function used for resetting student's grade
-    if currentUserName == str.lower("Lehrer"):  #see add_student
+    if str.lower(currentUserName) == str.lower("Lehrer"):  #see add_student
         id, students, grades = get_students_data()
         condition = True
 
@@ -269,7 +269,7 @@ def void_grade(currentUserName):    #function used for resetting student's grade
 
             studentIdToVoid = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Note Sie annullieren möchten (exit zum Beenden): ") #asks for id number of the student, who's note should be reset
 
-            if studentIdToVoid == str.lower("exit"):    #case-insensitive cancel-sequence
+            if str.lower(studentIdToVoid) == str.lower("exit"):    #case-insensitive cancel-sequence
                 condition = False
 
             else:
@@ -303,7 +303,7 @@ def get_students_note():    #function used for viewing certain student's graade
 
         studentIdToCheck = input("\nBitte geben Sie die Matrikelnummer des Studenten ein, dessen Note Sie überprüfen möchten (exit zum Beenden): ") #asks for id number of the student who's grade should be accessed
 
-        if studentIdToCheck == str.lower("exit"):   #case-insensitive cancel-sequence
+        if str.lower(studentIdToCheck) == str.lower("exit"):   #case-insensitive cancel-sequence
             condition = False
 
         else:

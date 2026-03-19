@@ -36,3 +36,5 @@ Done.
 State: 18.03.2026, 16:40: programm lacks descriptions and documentations, othervise ready for submission.
 
 State: 19.03.2026, 11:08: almost ready
+
+19.03.2026, 12:01: Bug found: exit sequences do not work as intended, because of a wrong comparison condition.      Bug fixed. sequences work as intended.

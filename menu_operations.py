@@ -4,7 +4,7 @@ from students_and_grades_operations import students_operations_menu as menu_stud
 def main_menu():    #function for initialisation of the main menu
     current_user = login()  #logs user in (for explanation of the function see "user_operations.py") and saves username for checking permissions
 
-    if current_user == str.lower("exit"):   #case-insensitive cancel-sequence (I just love this wording)
+    if str.lower(current_user) == str.lower("exit"):   #case-insensitive cancel-sequence (I just love this wording)
         print("Programm wird beendet. Auf Wiedersehen!")    #logout message
 
     else:
