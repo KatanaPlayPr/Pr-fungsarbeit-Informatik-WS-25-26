@@ -34,3 +34,5 @@ Done.
 18.03.2026, 16:35: testing the main file.   Expected output: equivalent to the main_menu function of the menu_operations.py.    Actual results: programm runs as intended.
 
 State: 18.03.2026, 16:40: programm lacks descriptions and documentations, othervise ready for submission.
+
+State: 19.03.2026, 11:08: almost ready
