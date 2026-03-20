@@ -34,10 +34,8 @@ def login():            #function for logging in; returns the username of the us
         else:
             password = input("Geben Sie das Passwort ein: ")    #asks for password and saves it in a variable; used for checking if the password is correct 
 
-            if password in get_users_data()[1]:   #checks if the password exists in the list of passwords
-
-                if password == get_users_data()[1][get_users_data()[0].index(currentUserName)]: #checks if password given by the user (see 35) is the same as the password on the same index as the "currentUserName" in lists of passwords and usernames (respectively)
-                    print("Login erfolgreich!\n")   #message in case of successful login
+            if password == get_users_data()[1][get_users_data()[0].index(currentUserName)]: #checks if password given by the user (see 35) is the same as the password on the same index as the "currentUserName" in lists of passwords and usernames (respectively)
+                print("Login erfolgreich!\n")   #message in case of successful login
                 condition = False   #see 29
 
             else:
